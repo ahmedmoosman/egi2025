@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E.G.I. Conference 2025 | Bari, Italy</title>
+    <title>EGI Conference 2025 | Bari, Italy</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,8 +16,8 @@
             font-family: 'Inter', sans-serif;
         }
         .hero-overlay {
-            /* This is now just a subtle darkening filter */
-            background: rgba(50, 50, 50, 0.25);
+            /* Darkening filter increased to 70% */
+            background: rgba(0, 0, 0, 0.7);
         }
         .speaker-img {
             width: 128px;
@@ -33,18 +33,18 @@
 </head>
 <body class="bg-gray-50 text-gray-800">
 
-    <!-- Header -->
+<!-- Header -->
     <header id="header" class="bg-white shadow-md fixed w-full top-0 z-50">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-slate-800">E.G.I. Conference '25</a>
-            <div class="hidden md:flex space-x-8 items-center">
-                <a href="#about" class="text-gray-600 hover:text-slate-600 transition duration-300">About</a>
-                <a href="#organizers" class="text-gray-600 hover:text-slate-600 transition duration-300">Organizers</a>
-                <a href="#speakers" class="text-gray-600 hover:text-slate-600 transition duration-300">Speakers</a>
-                <a href="#schedule" class="text-gray-600 hover:text-slate-600 transition duration-300">Schedule</a>
-                <a href="#venue" class="text-gray-600 hover:text-slate-600 transition duration-300">Location</a>
+            <a href="#" class="text-2xl font-bold text-slate-800">EGI Conference 2025</a>
+            <div class="hidden md:flex space-x-2 items-center">
+                <a href="#about" class="font-bold text-slate-800 px-5 py-2 rounded-full hover:bg-[#004c97] hover:text-white transition-all duration-300">About</a>
+                <a href="#organizers" class="font-bold text-slate-800 px-5 py-2 rounded-full hover:bg-[#004c97] hover:text-white transition-all duration-300">Organizers</a>
+                <a href="#speakers" class="font-bold text-slate-800 px-5 py-2 rounded-full hover:bg-[#004c97] hover:text-white transition-all duration-300">Speakers</a>
+                <a href="#schedule" class="font-bold text-slate-800 px-5 py-2 rounded-full hover:bg-[#004c97] hover:text-white transition-all duration-300">Schedule</a>
+                <a href="#venue" class="font-bold text-slate-800 px-5 py-2 rounded-full hover:bg-[#004c97] hover:text-white transition-all duration-300">Location</a>
                 <!-- Button now opens the modal -->
-                <button data-modal-open class="bg-[#004c97] text-white px-5 py-2 rounded-full hover:bg-[#003b76] transition duration-300 shadow-lg">Register Now</button>
+                <button data-modal-open class="bg-[#004c97] text-white font-bold px-5 py-2 rounded-full hover:bg-[#003b76] transition duration-300 shadow-lg">Register Now</button>
             </div>
             <!-- Mobile Menu Button -->
             <button id="mobile-menu-button" class="md:hidden">
@@ -66,18 +66,19 @@
         <!-- Hero Section -->
         <section class="relative h-screen flex items-center justify-center text-center" style="background-image: url('https://images.unsplash.com/photo-1564863756233-e90e6d2f264b?q=80&w=1974&auto=format&fit=crop'); background-size: cover; background-position: center;">
             <div class="absolute inset-0 hero-overlay"></div>
-            <!-- This box is now even more transparent -->
-            <div class="relative z-10 p-6 sm:p-8 md:p-10 bg-white/40 backdrop-blur-sm rounded-xl shadow-2xl text-gray-800 max-w-4xl mx-4">
-                <h1 class="text-3xl sm:text-4xl md:text-6xl font-extrabold leading-tight mb-2 sm:mb-4 tracking-tight text-slate-900">E.G.I. Conference 2025</h1>
-                <p class="text-md sm:text-lg md:text-2xl font-light mb-4 sm:mb-6">Economics of Global Interactions: New Perspectives on Trade, Factor Mobility and Development</p>
-                <p class="text-lg sm:text-xl md:text-3xl font-semibold mb-6 sm:mb-8">
-                    <span class="inline-block bg-gray-200/80 px-3 py-1 rounded-full text-base sm:text-lg">September 8-9, 2025 | Bari, Apulia, Italy</span>
-                </p>
+            <!-- Added blurred background box -->
+            <div class="relative z-10 p-6 sm:p-8 md:p-10 text-white max-w-6xl mx-4 bg-black/20 backdrop-blur-md rounded-xl">
+                <h1 class="text-4xl lg:text-6xl font-extrabold leading-tight mb-4 tracking-tight whitespace-nowrap">Economics of Global Interactions</h1>
+                <p class="text-xl md:text-3xl font-light mb-8">New Perspectives on Trade, Factor Mobility and Development</p>
+                <div class="text-xl md:text-3xl font-semibold mb-10 inline-block bg-black/20 px-6 py-3 rounded-full">
+                    <p>September 8-9, 2025</p>
+                    <p>Bari, Apulia, Italy</p>
+                </div>
                 <div class="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 sm:gap-4">
-                    <!-- Button now opens the modal -->
+                    <!-- Buttons reverted to blue background -->
                     <button data-modal-open class="bg-[#004c97] text-white px-8 py-3 sm:px-10 sm:py-4 rounded-full text-base sm:text-lg font-bold hover:bg-[#003b76] transition duration-300 transform hover:scale-105 shadow-xl w-full sm:w-auto">Register Now</button>
                     <a href="https://www.uniba.it/it/ricerca/dipartimenti/dse/e.g.i/bari-egi2025-cfp-final.pdf" target="_blank" rel="noopener noreferrer" class="bg-[#004c97] text-white px-8 py-3 sm:px-10 sm:py-4 rounded-full text-base sm:text-lg font-bold hover:bg-[#003b76] transition duration-300 transform hover:scale-105 shadow-xl w-full sm:w-auto">Call for Papers</a>
-                    <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=E.G.I.+Conference+2025&dates=20250908T090000/20250909T180000&details=The+15th+International+Conference+in+Economics+of+Global+Interactions.+New+Perspectives+on+Trade,+Factor+Mobility+and+Development.&location=Auditorium+Quacquarelli,+University+of+Bari,+Bari,+Italy" target="_blank" rel="noopener noreferrer" class="bg-gray-100 border border-gray-300 text-gray-700 px-6 py-3 sm:px-8 sm:py-4 rounded-full text-base sm:text-lg font-bold hover:bg-gray-200 transition duration-300 transform hover:scale-105 shadow-xl flex items-center justify-center gap-2 w-full sm:w-auto">
+                    <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=EGI+Conference+2025&dates=20250908T090000/20250909T180000&details=The+15th+International+Conference+in+Economics+of+Global+Interactions.+New+Perspectives+on+Trade,+Factor+Mobility+and+Development.&location=Auditorium+Quacquarelli,+University+of+Bari,+Bari,+Italy" target="_blank" rel="noopener noreferrer" class="bg-transparent border-2 border-white text-white px-6 py-3 sm:px-8 sm:py-4 rounded-full text-base sm:text-lg font-bold hover:bg-white hover:text-slate-800 transition duration-300 transform hover:scale-105 shadow-xl flex items-center justify-center gap-2 w-full sm:w-auto">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                         </svg>
@@ -88,18 +89,17 @@
         </section>
 
         <!-- Logos Section -->
-        <!-- Band color updated to UniBA blue -->
-        <section class="bg-[#004c97] flex items-center" style="height: 200px;">
+        <section class="bg-white flex items-center" style="height: 200px;">
             <div class="container mx-auto px-6">
                 <div class="flex flex-wrap items-center justify-around">
-                    <!-- UniBA Logo with corrected height class -->
-                    <a href="https://www.uniba.it/" target="_blank" rel="noopener noreferrer" class="block"><img src="https://www.uniba.it/++plone++design.plone.theme/unibalogo.svg" alt="Università degli Studi di Bari Aldo Moro" class="h-24 w-auto transition-transform hover:scale-105"></a>
-                    <!-- Cerpem Logo with corrected height class -->
+                    <!-- UniBA Logo updated -->
+                    <a href="https://www.uniba.it/" target="_blank" rel="noopener noreferrer" class="block"><img src="https://upload.wikimedia.org/wikipedia/commons/6/62/Uniba.svg" alt="Università degli Studi di Bari Aldo Moro" class="h-24 w-auto transition-transform hover:scale-105"></a>
+                    <!-- Cerpem Logo -->
                     <a href="https://cerpem.it" target="_blank" rel="noopener noreferrer" class="block"><img src="https://cerpem.it/wp-content/uploads/2019/03/cropped-cerpemlogo-1.png" alt="Cerpem" class="h-20 w-auto transition-transform hover:scale-105"></a>
-                    <!-- FAIR Logo with corrected height class -->
+                    <!-- FAIR Logo -->
                     <a href="https://www.nhh.no/en/research-centres/fair/" target="_blank" rel="noopener noreferrer" class="block"><img src="https://www.nhh.no/contentassets/d87d7a2613bc41d7a7e7e4358b4c578d/fair-kvadratisk-new.svg" alt="FAIR Centre" class="h-24 w-auto transition-transform hover:scale-105"></a>
-                    <!-- NHH Logo with corrected height class -->
-                    <a href="https://www.nhh.no/" target="_blank" rel="noopener noreferrer" class="block"><img src="https://www.nhh.no/contentassets/dab910c2b4b441648c82105332b974ac/nhh_logo_2f_positiv_gull.png" alt="NHH Norwegian School of Economics" class="h-20 w-auto transition-transform hover:scale-105"></a>
+                    <!-- NHH Logo updated and enlarged -->
+                    <a href="https://www.nhh.no/" target="_blank" rel="noopener noreferrer" class="block"><img src="https://www.nhh.no/contentassets/dab910c2b4b441648c82105332b974ac/nhh_logo_1f_positiv_helblaa.png" alt="NHH Norwegian School of Economics" class="h-24 w-auto transition-transform hover:scale-105"></a>
                 </div>
             </div>
         </section>
@@ -110,7 +110,7 @@
                 <h2 class="text-4xl font-bold mb-6 text-slate-900 text-center">About the Conference</h2>
                 <div class="max-w-4xl mx-auto text-gray-700 text-lg leading-relaxed text-justify">
                     <p class="mb-4">
-                        The University of Bari Aldo Moro is hosting the 15th edition of the conference on the  “Economics of Global Interactions” on 8-9 September 2025. The conference is co-organized with the Centre for Experimental Research on Fairness, Inequality, and Rationality (FAIR) at NHH Norwegian School of Economics (Bergen, Norway) and <strong class="text-slate-800"><a href="http://www.master-egei.eu" target="_blank" rel="noopener noreferrer" class="underline hover:text-[#004c97]">Master E.G.E.I.</a></strong> within the GRINS - Growing Resilient, Inclusive and Sustainable project.
+                        The University of Bari Aldo Moro is hosting the 15th edition of the conference on the  “Economics of Global Interactions” on 8-9 September 2025. The conference is co-organized with the Centre for Experimental Research on Fairness, Inequality, and Rationality (FAIR) at NHH Norwegian School of Economics (Bergen, Norway) and <strong class="text-slate-800"><a href="http://www.master-egei.eu" target="_blank" rel="noopener noreferrer" class="underline hover:text-[#004c97]">Master EGEI</a></strong> within the GRINS - Growing Resilient, Inclusive and Sustainable project.
                     </p>
                     <p class="mb-4">
                         Sponsors of the event include SNF-Norway and Cerpem srl.
@@ -135,40 +135,7 @@
                 </div>
             </div>
         </section>
-
-        <!-- Organizers Section -->
-        <section id="organizers" class="py-20">
-            <div class="container mx-auto px-6">
-                <h2 class="text-4xl font-bold text-center mb-12 text-slate-900">Organizers</h2>
-                <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 justify-center">
-                    <!-- Organizer 1 -->
-                    <a href="https://www.uniba.it/it/docenti/coniglio-nicola-daniele" target="_blank" rel="noopener noreferrer" class="block bg-white rounded-lg shadow-lg text-center transform hover:-translate-y-2 transition-transform duration-300 group">
-                        <div class="p-6">
-                            <img src="https://www.uniba.it/it/docenti/coniglio-nicola-daniele/NicolaConigliofototessera.jpg/@@images/ed2d330e-859b-43ee-9df9-2b979d0e3c44.jpeg" alt="Nicola Coniglio" class="speaker-img rounded-full mx-auto mb-4 border-4 border-slate-200 group-hover:border-[#004c97] transition-colors duration-300">
-                            <h3 class="text-xl font-bold mb-1">Nicola Coniglio</h3>
-                            <p class="text-sm text-gray-600 text-justify">Professor in Economic Policy. Director of Eramus Mundus Joint Master Degree in Economics of Globalisation and European Integration (EMJMD EGEI). Associate editor Politica Economica - Journal of Economic Policy (Il Mulino). Associate editor Journal of African Development (Penn State University Press). Research affiliate of the Political Economy Research Group at University of Bergen (Norway) and of The Choice Lab - FAIR at the Norwegian School of Economics.</p>
-                        </div>
-                    </a>
-                    <!-- Organizer 2 -->
-                    <a href="https://www.nhh.no/en/employees/faculty/kjetil-bjorvatn/#tab1" target="_blank" rel="noopener noreferrer" class="block bg-white rounded-lg shadow-lg text-center transform hover:-translate-y-2 transition-transform duration-300 group">
-                        <div class="p-6">
-                            <img src="https://www.nhh.no/contentassets/e460566d3b4d4170942c17c6338d7df5/s1717.jpg?width=400&factor=2&quality=90" alt="Kjetil Bjorvatn" class="speaker-img rounded-full mx-auto mb-4 border-4 border-slate-200 group-hover:border-[#004c97] transition-colors duration-300">
-                            <h3 class="text-xl font-bold mb-1">Kjetil Bjorvatn</h3>
-                            <p class="text-sm text-gray-600 text-justify">Professor in Economics, NHH. Core member of The Choice Lab, NHH. Leader of the FAIR Insight Team at the Centre of Excellence FAIR.</p>
-                        </div>
-                    </a>
-                    <!-- Organizer 3 -->
-                    <a href="https://www4.uib.no/en/find-employees/Rune.Jansen.Hagen" target="_blank" rel="noopener noreferrer" class="block bg-white rounded-lg shadow-lg text-center transform hover:-translate-y-2 transition-transform duration-300 group">
-                        <div class="p-6">
-                            <img src="https://profile.uib.no/sites/default/files/styles/profile_image/public/w2/ru/rune-jansen-hagen-web.jpg?h=2691ebc6&itok=ybCqxMIA" alt="Rune Jansen Hagen" class="speaker-img rounded-full mx-auto mb-4 border-4 border-slate-200 group-hover:border-[#004c97] transition-colors duration-300">
-                            <h3 class="text-xl font-bold mb-1">Rune Jansen Hagen</h3>
-                            <p class="text-sm text-gray-600 text-justify">Professor of International Macroeconomic and Development Economics, University of Bergen. Head of the research group Political Economy. One of the editors of Samfunnsøkonomen, the journal of the Norwegian Economic Association.</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </section>
-
+        
         <!-- Speakers Section -->
         <section id="speakers" class="py-20 bg-gray-100">
             <div class="container mx-auto px-6">
@@ -231,6 +198,39 @@
             </div>
         </section>
 
+        <!-- Organizers Section -->
+        <section id="organizers" class="py-20 bg-gray-100">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold text-center mb-12 text-slate-900">Organizers</h2>
+                <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 justify-center">
+                    <!-- Organizer 1 -->
+                    <a href="https://www.uniba.it/it/docenti/coniglio-nicola-daniele" target="_blank" rel="noopener noreferrer" class="block bg-white rounded-lg shadow-lg text-center transform hover:-translate-y-2 transition-transform duration-300 group">
+                        <div class="p-6">
+                            <img src="https://www.uniba.it/it/docenti/coniglio-nicola-daniele/NicolaConigliofototessera.jpg/@@images/ed2d330e-859b-43ee-9df9-2b979d0e3c44.jpeg" alt="Nicola Coniglio" class="speaker-img rounded-full mx-auto mb-4 border-4 border-slate-200 group-hover:border-[#004c97] transition-colors duration-300">
+                            <h3 class="text-xl font-bold mb-1">Nicola Coniglio</h3>
+                            <p class="text-gray-500 mb-2">University of Bari</p>
+                        </div>
+                    </a>
+                    <!-- Organizer 2 -->
+                    <a href="https://www.nhh.no/en/employees/faculty/kjetil-bjorvatn/#tab1" target="_blank" rel="noopener noreferrer" class="block bg-white rounded-lg shadow-lg text-center transform hover:-translate-y-2 transition-transform duration-300 group">
+                        <div class="p-6">
+                            <img src="https://www.nhh.no/contentassets/e460566d3b4d4170942c17c6338d7df5/s1717.jpg?width=400&factor=2&quality=90" alt="Kjetil Bjorvatn" class="speaker-img rounded-full mx-auto mb-4 border-4 border-slate-200 group-hover:border-[#004c97] transition-colors duration-300">
+                            <h3 class="text-xl font-bold mb-1">Kjetil Bjorvatn</h3>
+                            <p class="text-gray-500 mb-2">NHH Norwegian School of Economics</p>
+                        </div>
+                    </a>
+                    <!-- Organizer 3 -->
+                    <a href="https://www4.uib.no/en/find-employees/Rune.Jansen.Hagen" target="_blank" rel="noopener noreferrer" class="block bg-white rounded-lg shadow-lg text-center transform hover:-translate-y-2 transition-transform duration-300 group">
+                        <div class="p-6">
+                            <img src="https://profile.uib.no/sites/default/files/styles/profile_image/public/w2/ru/rune-jansen-hagen-web.jpg?h=2691ebc6&itok=ybCqxMIA" alt="Rune Jansen Hagen" class="speaker-img rounded-full mx-auto mb-4 border-4 border-slate-200 group-hover:border-[#004c97] transition-colors duration-300">
+                            <h3 class="text-xl font-bold mb-1">Rune Jansen Hagen</h3>
+                            <p class="text-gray-500 mb-2">University of Bergen</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
         <!-- Location Section -->
         <section id="venue" class="py-20">
             <div class="container mx-auto px-6">
@@ -257,23 +257,12 @@
             </div>
         </section>
         
-        <!-- Registration Section -->
-        <section id="register" class="py-20 bg-[#004c97] text-white">
-            <div class="container mx-auto px-6 text-center">
-                <h2 class="text-4xl font-bold mb-4">Join the Conversation</h2>
-                <p class="text-lg mb-8 max-w-2xl mx-auto">
-                    Secure your place to connect with leading scholars and contribute to the future of global economic studies. For information and registration, please contact the organizers.
-                </p>
-                <button data-modal-open class="bg-white text-[#004c97] px-10 py-4 rounded-full text-lg font-bold hover:bg-gray-200 transition duration-300 transform hover:scale-105 shadow-2xl">Contact to Register</button>
-            </div>
-        </section>
-        
     </main>
 
     <!-- Footer -->
     <footer class="bg-gray-900 text-white py-10">
         <div class="container mx-auto px-6 text-center">
-            <p>&copy; 2025 E.G.I. Conference. All Rights Reserved.</p>
+            <p>&copy; 2025 EGI Conference. All Rights Reserved.</p>
             <p class="text-sm text-gray-400 mt-2">Hosted by the University of Bari Aldo Moro</p>
         </div>
     </footer>
@@ -344,7 +333,7 @@
 
             // Temporarily add a title for the PDF
             const title = document.createElement('h1');
-            title.innerText = 'E.G.I. Conference 2025 - Registration';
+            title.innerText = 'EGI Conference 2025 - Registration';
             title.className = 'text-xl font-bold mb-4 text-center text-[#004c97]';
             formContainer.prepend(title);
 
