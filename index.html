@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- PDF Generation Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
@@ -28,46 +29,70 @@
         #registerModal.hidden {
             display: none;
         }
+        /* Offset for sticky headers to account for the main navigation bar */
+        .sticky-day-header {
+            top: 68px; /* Adjust this value based on your header's height */
+        }
+        /* Highlight style for schedule items */
+        .highlight {
+            background-color: #e0f2fe !important; /* Tailwind's sky-100 */
+            transition: background-color 0.3s ease-in-out;
+        }
+        /* Styles for active tab */
+        .tab-btn.active {
+            background-color: #004c97;
+            color: white;
+            border-color: #004c97;
+        }
+        .tab-btn.active .tab-date {
+            display: inline;
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
 
+    <!-- Header -->
     <header id="header" class="bg-white shadow-md fixed w-full top-0 z-50">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-slate-800 whitespace-nowrap">EGI Conference 2025</a>
+            <a href="#" class="text-xl sm:text-2xl font-bold text-slate-800 whitespace-nowrap">EGI Conference 2025</a>
             <div class="hidden md:flex items-center space-x-2">
                 <a href="#about" class="font-bold text-slate-800 px-5 py-2 rounded-full hover:bg-[#004c97] hover:text-white transition-all duration-300">About</a>
+                <a href="#schedule" class="font-bold text-slate-800 px-5 py-2 rounded-full hover:bg-[#004c97] hover:text-white transition-all duration-300">Schedule</a>
                 <a href="#organizers" class="font-bold text-slate-800 px-5 py-2 rounded-full hover:bg-[#004c97] hover:text-white transition-all duration-300">Organizers</a>
                 <a href="#speakers" class="font-bold text-slate-800 px-5 py-2 rounded-full hover:bg-[#004c97] hover:text-white transition-all duration-300">Speakers</a>
-                <a href="#schedule" class="font-bold text-slate-800 px-5 py-2 rounded-full hover:bg-[#004c97] hover:text-white transition-all duration-300">Schedule</a>
                 <a href="#venue" class="font-bold text-slate-800 px-5 py-2 rounded-full hover:bg-[#004c97] hover:text-white transition-all duration-300">Location</a>
                 <button data-modal-open class="bg-[#004c97] text-white font-bold px-5 py-2 rounded-full hover:bg-[#003b76] transition duration-300 shadow-lg whitespace-nowrap">Register Now</button>
             </div>
+            <!-- Mobile Menu Button -->
             <button id="mobile-menu-button" class="md:hidden">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
             </button>
         </nav>
+        <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden">
             <a href="#about" class="block py-2 px-4 text-sm hover:bg-gray-200">About</a>
+            <a href="#schedule" class="block py-2 px-4 text-sm hover:bg-gray-200">Schedule</a>
             <a href="#organizers" class="block py-2 px-4 text-sm hover:bg-gray-200">Organizers</a>
             <a href="#speakers" class="block py-2 px-4 text-sm hover:bg-gray-200">Speakers</a>
-            <a href="#schedule" class="block py-2 px-4 text-sm hover:bg-gray-200">Schedule</a>
             <a href="#venue" class="block py-2 px-4 text-sm hover:bg-gray-200">Location</a>
             <button data-modal-open class="w-full text-left block py-2 px-4 text-sm bg-slate-50 hover:bg-slate-100 font-semibold">Register Now</button>
         </div>
     </header>
 
     <main>
+        <!-- Hero Section -->
         <section class="relative h-screen flex items-center justify-center text-center" style="background-image: url('https://images.unsplash.com/photo-1564863756233-e90e6d2f264b?q=80&w=1974&auto=format&fit=crop'); background-size: cover; background-position: center;">
             <div class="absolute inset-0 hero-overlay"></div>
-            <div class="relative z-10 p-4 sm:p-8 md:p-10 text-white max-w-4xl sm:max-w-6xl mx-4 bg-black/20 backdrop-blur-md rounded-xl">
+            <!-- Added blurred background box -->
+            <div class="relative z-10 p-4 sm:p-8 md:p-10 text-white max-w-6xl mx-4 bg-black/20 backdrop-blur-md rounded-xl">
                 <h1 class="text-3xl sm:text-4xl lg:text-6xl font-extrabold leading-tight mb-4 tracking-tight">Economics of Global Interactions</h1>
                 <p class="text-lg sm:text-xl md:text-3xl font-light mb-8">New Perspectives on Trade, Factor Mobility and Development</p>
                 <div class="text-lg sm:text-xl md:text-3xl font-semibold mb-10">
                     <p>September 8-9, 2025</p>
-                    <p>Bari, Apulia, Italy</p>
+                    <p>Bari, Italy</p>
                 </div>
                 <div class="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 sm:gap-4">
+                    <!-- Buttons reverted to blue background -->
                     <button data-modal-open class="bg-[#004c97] text-white px-8 py-3 sm:px-10 sm:py-4 rounded-full text-base sm:text-lg font-bold hover:bg-[#003b76] transition duration-300 transform hover:scale-105 shadow-xl w-full sm:w-auto">Register Now</button>
                     <a href="https://www.uniba.it/it/ricerca/dipartimenti/dse/e.g.i/bari-egi2025-cfp-final.pdf" target="_blank" rel="noopener noreferrer" class="bg-[#004c97] text-white px-8 py-3 sm:px-10 sm:py-4 rounded-full text-base sm:text-lg font-bold hover:bg-[#003b76] transition duration-300 transform hover:scale-105 shadow-xl w-full sm:w-auto">Call for Papers</a>
                     <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=EGI+Conference+2025&dates=20250908T090000/20250909T180000&details=The+15th+International+Conference+in+Economics+of+Global+Interactions.+New+Perspectives+on+Trade,+Factor+Mobility+and+Development.&location=Auditorium+Quacquarelli,+University+of+Bari,+Bari,+Italy" target="_blank" rel="noopener noreferrer" class="bg-transparent border-2 border-white text-white px-6 py-3 sm:px-8 sm:py-4 rounded-full text-base sm:text-lg font-bold hover:bg-white hover:text-slate-800 transition duration-300 transform hover:scale-105 shadow-xl flex items-center justify-center gap-2 w-full sm:w-auto">
@@ -80,20 +105,26 @@
             </div>
         </section>
 
-        <section class="bg-white flex items-center" style="height: 200px;">
+        <!-- Logos Section -->
+        <section class="bg-white flex items-center py-8" style="min-height: 150px;">
             <div class="container mx-auto px-6">
-                <div class="flex flex-wrap items-center justify-around">
-                    <a href="https://www.uniba.it/" target="_blank" rel="noopener noreferrer" class="block"><img src="https://upload.wikimedia.org/wikipedia/commons/6/62/Uniba.svg" alt="Università degli Studi di Bari Aldo Moro" class="h-14 sm:h-24 w-auto transition-transform hover:scale-105" onerror="this.onerror=null;this.src='https://placehold.co/200x100/e2e8f0/e2e8f0?text=Logo';"></a>
-                    <a href="https://cerpem.it" target="_blank" rel="noopener noreferrer" class="block"><img src="https://cerpem.it/wp-content/uploads/2019/03/cropped-cerpemlogo-1.png" alt="Cerpem" class="h-12 sm:h-20 w-auto transition-transform hover:scale-105" onerror="this.onerror=null;this.src='https://placehold.co/200x80/e2e8f0/e2e8f0?text=Logo';"></a>
-                    <a href="https://www.nhh.no/en/research-centres/fair/" target="_blank" rel="noopener noreferrer" class="block"><img src="https://www.nhh.no/contentassets/d87d7a2613bc41d7a7e7e4358b4c578d/fair-kvadratisk-new.svg" alt="FAIR Centre" class="h-14 sm:h-24 w-auto transition-transform hover:scale-105" onerror="this.onerror=null;this.src='https://placehold.co/100x100/e2e8f0/e2e8f0?text=Logo';"></a>
-                    <a href="https://www.nhh.no/" target="_blank" rel="noopener noreferrer" class="block"><img src="https://www.nhh.no/contentassets/dab910c2b4b441648c82105332b974ac/nhh_logo_1f_positiv_helblaa.png" alt="NHH Norwegian School of Economics" class="h-14 sm:h-24 w-auto transition-transform hover:scale-105" onerror="this.onerror=null;this.src='https://placehold.co/200x100/e2e8f0/e2e8f0?text=Logo';"></a>
+                <div class="flex flex-wrap items-center justify-center sm:justify-around gap-x-6 sm:gap-x-12 gap-y-6">
+                    <!-- UniBA Logo updated -->
+                    <a href="https://www.uniba.it/" target="_blank" rel="noopener noreferrer" class="block"><img src="https://upload.wikimedia.org/wikipedia/commons/6/62/Uniba.svg" alt="Università degli Studi di Bari Aldo Moro" class="h-16 sm:h-20 w-auto transition-transform hover:scale-105"></a>
+                    <!-- Cerpem Logo -->
+                    <a href="https://cerpem.it" target="_blank" rel="noopener noreferrer" class="block"><img src="https://cerpem.it/wp-content/uploads/2019/03/cropped-cerpemlogo-1.png" alt="Cerpem" class="h-12 sm:h-16 w-auto transition-transform hover:scale-105"></a>
+                    <!-- FAIR Logo -->
+                    <a href="https://www.nhh.no/en/research-centres/fair/" target="_blank" rel="noopener noreferrer" class="block"><img src="https://www.nhh.no/contentassets/d87d7a2613bc41d7a7e7e4358b4c578d/fair-kvadratisk-new.svg" alt="FAIR Centre" class="h-16 sm:h-20 w-auto transition-transform hover:scale-105"></a>
+                    <!-- NHH Logo updated and enlarged -->
+                    <a href="https://www.nhh.no/" target="_blank" rel="noopener noreferrer" class="block"><img src="https://www.nhh.no/contentassets/dab910c2b4b441648c82105332b974ac/nhh_logo_1f_positiv_helblaa.png" alt="NHH Norwegian School of Economics" class="h-16 sm:h-20 w-auto transition-transform hover:scale-105"></a>
                 </div>
             </div>
         </section>
 
+        <!-- About Section -->
         <section id="about" class="py-20 bg-white">
             <div class="container mx-auto px-6">
-                <h2 class="text-4xl font-bold mb-6 text-slate-900 text-center">About the Conference</h2>
+                <h2 class="text-3xl sm:text-4xl font-bold mb-6 text-slate-900 text-center">About the Conference</h2>
                 <div class="max-w-4xl mx-auto text-gray-700 text-base md:text-lg leading-relaxed text-justify">
                     <p class="mb-4">
                         The University of Bari Aldo Moro is hosting the 15th edition of the conference on the  “Economics of Global Interactions” on 8-9 September 2025. The conference is co-organized with the Centre for Experimental Research on Fairness, Inequality, and Rationality (FAIR) at NHH Norwegian School of Economics (Bergen, Norway) and <strong class="text-slate-800"><a href="http://www.master-egei.eu" target="_blank" rel="noopener noreferrer" class="underline hover:text-[#004c97]">Master EGEI</a></strong> within the GRINS - Growing Resilient, Inclusive and Sustainable project.
@@ -122,91 +153,283 @@
             </div>
         </section>
         
-        <section id="speakers" class="py-20 bg-gray-100">
+        <!-- Schedule Section -->
+        <section id="schedule" class="py-20 bg-gray-100">
             <div class="container mx-auto px-6">
-                <h2 class="text-4xl font-bold text-center mb-12 text-slate-900">Keynote Speakers</h2>
-                <div class="max-w-2xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-10 justify-center">
-                    <a href="https://sites.google.com/view/paola-conconi-website/" target="_blank" rel="noopener noreferrer" class="block bg-white rounded-lg shadow-lg text-center transform hover:-translate-y-2 transition-transform duration-300 group">
-                        <div class="p-6">
-                            <img src="https://www.economics.ox.ac.uk/sites/default/files/styles/person_profile_photo/public/economics/images/person/paola_conconi.jpg?itok=lMdxnv0r" alt="Paola Conconi" class="speaker-img rounded-full mx-auto mb-4 border-4 border-slate-200 group-hover:border-[#004c97] transition-colors duration-300" onerror="this.onerror=null;this.src='https://placehold.co/128x128/e2e8f0/64748b?text=PC';">
-                            <h3 class="text-xl font-bold mb-1">Paola Conconi</h3>
-                            <p class="text-gray-500 mb-2">University of Oxford</p>
-                            <p class="text-sm text-gray-600 text-justify">Professor of Economics (Statutory Chair) at the University of Oxford. Professorial Fellow at New College Oxford. Member of the European Center for Advanced Research in Economics and Statistics (ECARES).</p>
+                <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12 text-slate-900">Event Schedule</h2>
+                <div class="max-w-4xl mx-auto text-xs sm:text-sm">
+                    <!-- Tabs -->
+                    <div class="sticky top-[68px] bg-gray-100 z-20 py-2">
+                        <div class="border-b border-gray-300">
+                            <nav class="flex space-x-4" aria-label="Tabs">
+                                <button id="day1-tab" class="tab-btn active w-1/2 text-center font-bold text-lg px-4 py-2 rounded-t-lg transition-colors duration-300">
+                                    <span class="tab-day-text">Day 1</span><span class="tab-date hidden sm:inline"> - September 8, 2025</span>
+                                </button>
+                                <button id="day2-tab" class="tab-btn w-1/2 text-center font-bold text-lg px-4 py-2 rounded-t-lg transition-colors duration-300">
+                                    <span class="tab-day-text">Day 2</span><span class="tab-date hidden sm:inline"> - September 9, 2025</span>
+                                </button>
+                            </nav>
                         </div>
-                    </a>
-                    <a href="https://axel-dreher.de/" target="_blank" rel="noopener noreferrer" class="block bg-white rounded-lg shadow-lg text-center transform hover:-translate-y-2 transition-transform duration-300 group">
-                        <div class="p-6">
-                            <img src="https://axel-dreher.de/wp-content/uploads/2023/06/Axel-Dreher-1-1024x915.jpg" alt="Axel Dreher" class="speaker-img rounded-full mx-auto mb-4 border-4 border-slate-200 group-hover:border-[#004c97] transition-colors duration-300" onerror="this.onerror=null;this.src='https://placehold.co/128x128/e2e8f0/64748b?text=AD';">
-                            <h3 class="text-xl font-bold mb-1">Axel Dreher</h3>
-                            <p class="text-gray-500 mb-2">Heidelberg University</p>
-                            <p class="text-sm text-gray-600 text-justify">Professor of International and Development Politics at Heidelberg University’s Alfred-Weber-Institute for Economics. Editor of the Review of International Organizations. Co-Director of CefES, member of the German National Academy of Sciences Leopoldina.</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <section id="schedule" class="py-20 bg-white">
-            <div class="container mx-auto px-6">
-                <h2 class="text-4xl font-bold text-center mb-12 text-slate-900">Event Schedule</h2>
-                <div class="max-w-4xl mx-auto">
-                    <div class="border-l-4 border-[#004c97] pl-8 space-y-12">
-                        <div>
-                            <h3 class="text-xl md:text-2xl font-bold mb-4"><span class="bg-[#004c97] text-white rounded-full px-4 py-1 mr-3">Day 1</span> September 8, 2025</h3>
-                            <div class="space-y-4">
-                                <div class="p-4 bg-gray-100 rounded-lg text-sm md:text-base"><strong>09:00 AM</strong> - Registration & Welcome Coffee</div>
-                                <div class="p-4 bg-gray-100 rounded-lg text-sm md:text-base"><strong>10:00 AM</strong> - Opening Remarks</div>
-                                <div class="p-4 bg-gray-100 rounded-lg text-sm md:text-base"><strong>10:30 AM</strong> - Keynote: Paola Conconi</div>
-                                <div class="p-4 bg-gray-100 rounded-lg text-sm md:text-base"><strong>12:00 PM</strong> - Panel: New Perspectives on International Trade</div>
-                                <div class="p-4 bg-gray-100 rounded-lg text-sm md:text-base"><strong>01:30 PM</strong> - Lunch Break</div>
-                                <div class="p-4 bg-gray-100 rounded-lg text-sm md:text-base"><strong>03:00 PM</strong> - Parallel Sessions on Factor Mobility & FDI</div>
-                                <div class="p-4 bg-gray-100 rounded-lg text-sm md:text-base"><strong>05:00 PM</strong> - Conference Reception</div>
+                    </div>
+                    
+                    <!-- Day 1 Content -->
+                    <div id="day1-content" class="day-content pt-4">
+                        <div class="space-y-4">
+                            <div class="schedule-item p-4 bg-white rounded-lg text-left" data-day="1"><strong>9:00 – 9:15</strong> - Welcome and opening remarks by prof. Vitorocco Peragine (Head of the Department of Economics and Finance, University of Bari Aldo Moro)</div>
+                            <div class="schedule-item p-4 bg-white rounded-lg text-center" data-day="1"><strong>9:15 – 10:15</strong> - <strong>Keynote Lecture: Prof. Paola Conconi (University of Oxford, UK)</strong> <br><em>“Trade Within Multinational Boundaries”</em> <br>(with L. Alfaro, F. Kamal, and Z. Kroff)</div>
+                            <div class="p-4 bg-white rounded-lg"><strong>10:15 - 10:45</strong> - Coffee break</div>
+                            <div class="p-4 bg-white rounded-lg">
+                                <p class="font-bold mb-4">10:45 - 12:45 - Parallel Sessions</p>
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                                    <div class="bg-gray-50 p-3 rounded-md">
+                                        <h4 class="font-bold text-base text-[#004c97] mb-2 min-h-[4em]">Session 1: Geopolitical risks and global interactions</h4>
+                                        <ul class="space-y-2 text-justify">
+                                            <li class="schedule-item" data-day="1"><strong>Alen Mulabdic</strong> (World Bank, USA), Geopolitical Risks and Trade. <em>Discussant: Alireza Naghavi</em></li>
+                                            <li class="schedule-item" data-day="1"><strong>Giuseppe De Arcangelis</strong> (Sapienza University of Rome, Italy), Trade Fragmentation in the Post-2022 World Economy. <em>Discussant: Alexander Plekhanov</em></li>
+                                            <li class="schedule-item" data-day="1"><strong>Mushegh Tovmasyan</strong> (University Paris-Saclay, France) Trade and Firm-Level Adjustments to Geopolitical Shifts: Evidence from Armenia. <em>Discussant: Andrey Stoyanov</em></li>
+                                        </ul>
+                                    </div>
+                                    <div class="bg-gray-50 p-3 rounded-md">
+                                        <h4 class="font-bold text-base text-[#004c97] mb-2 min-h-[4em]">Session 2: Economic development</h4>
+                                        <ul class="space-y-2 text-justify">
+                                            <li class="schedule-item" data-day="1"><strong>Christelle Dumas</strong> (University of Fribourg, Switzerland) Child fostering & nutrition in South Africa. <em>Discussant: Keisaku Higashida</em></li>
+                                            <li class="schedule-item" data-day="1"><strong>Evie Graus</strong> (University of Luxembourg), Roads and food security in Sub-Saharan Africa. <em>Discussant: Arne Nasgowitz</em></li>
+                                            <li class="schedule-item" data-day="1"><strong>Karsten Mau</strong> (Maastricht University, Netherlands), Special Economic Zones and Firm Performance: Evidence from Vietnam. <em>Discussant: Megan Haasbroek</em></li>
+                                        </ul>
+                                    </div>
+                                    <div class="bg-gray-50 p-3 rounded-md">
+                                        <h4 class="font-bold text-base text-[#004c97] mb-2 min-h-[4em]">Session 3: Economics of conflicts, crisis and illegal markets</h4>
+                                        <ul class="space-y-2 text-justify">
+                                            <li class="schedule-item" data-day="1"><strong>Jan Fidrmuc</strong> (Université de Lille, France) Russia’s Wartime Economy: Measuring Regional Inequalities from Outer Space. <em>Discussant: Michel Beine</em></li>
+                                            <li class="schedule-item" data-day="1"><strong>Gianmarco Daniele</strong> (University of Milan & Bocconi University, Italy) Legal trade exposure and illicit drug trafficking. <em>Discussant: Jan Fidrmuc</em></li>
+                                            <li class="schedule-item" data-day="1"><strong>Silvia Marchesi</strong> (University of Milano Bicocca, Italy) Heterogeneous Trade Outcomes of Sovereign Defaults: External vs Domestic Defaults. <em>Discussant: Matteo Lanzafame</em></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-4 bg-white rounded-lg"><strong>12:45 - 13:45</strong> - Lunch break</div>
+                            <div class="p-4 bg-white rounded-lg">
+                                <p class="font-bold mb-4">13:45 – 15.30 - Parallel Sessions</p>
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                                    <div class="bg-gray-50 p-3 rounded-md">
+                                        <h4 class="font-bold text-base text-[#004c97] mb-2 min-h-[4em]">Session 4: Migration, innovation and human capital</h4>
+                                        <ul class="space-y-2 text-justify">
+                                            <li class="schedule-item" data-day="1"><strong>Michel Beine</strong> (University of Luxembourg) The Contribution of Foreign Master's Students on US Start-ups. <em>Discussant: Hubert Jayet</em></li>
+                                            <li class="schedule-item" data-day="1"><strong>Roberto Basile</strong> (University of Rome Sapienza, Italy) From South to North ... and Beyond: Educational Selectivity and Migration Trajectories in Italy. <em>Discussant: Antonello Clemente</em></li>
+                                            <li class="schedule-item" data-day="1"><strong>Antonello Clemente</strong> (University of Bari, Italy), Skill-Specific Drivers of Internal Mobility: Evidence from Italian Municipalities. <em>Discussant: Roberto Basile</em></li>
+                                        </ul>
+                                    </div>
+                                    <div class="bg-gray-50 p-3 rounded-md">
+                                        <h4 class="font-bold text-base text-[#004c97] mb-2 min-h-[4em]">Session 5: Trade Policy (1)</h4>
+                                        <ul class="space-y-2 text-justify">
+                                            <li class="schedule-item" data-day="1"><strong>Amanda De Pirro</strong> (Università della Svizzera Italiana, Switzerland) TBTs & Domestic Firms' Performance: Evidence from India. <em>Discussant: Ignacio Marra de Artinano</em></li>
+                                            <li class="schedule-item" data-day="1"><strong>Michael Nower</strong> (Durham University, UK) Intermediate Inputs and the Transmission of Macroeconomic Shocks: The Case of the UK’s Exit from the EU. <em>Discussant: Silvia Marchesi</em></li>
+                                            <li class="schedule-item" data-day="1"><strong>Yasuhiro Takarada</strong> (Nanzan University, Japan) How do reciprocal tariffs lead to free trade?. <em>Discussant: Federico Trionfetti</em></li>
+                                        </ul>
+                                    </div>
+                                    <div class="bg-gray-50 p-3 rounded-md">
+                                        <h4 class="font-bold text-base text-[#004c97] mb-2 min-h-[4em]">Session 6: Globalisation and sectoral dynamics</h4>
+                                        <ul class="space-y-2 text-justify">
+                                            <li class="schedule-item" data-day="1"><strong>Megan Haasbroek</strong> (BI Norwegian Business School) Land Acquisition and Sectoral Composition: Evidence from India. <em>Discussant: Tim de Leeuw</em></li>
+                                            <li class="schedule-item" data-day="1"><strong>Paolo Bonnet</strong> (EU Joint Research Centre, Italy) (Un)intended spillovers of export controls: evidence on the semiconductor production chain. <em>Discussant: Maxime Berro</em></li>
+                                            <li class="schedule-item" data-day="1"><strong>Giovanni Ferri</strong> (LUMSA, Italy) Re-legitimation & Sustainability Disclosure: A World Analysis of 3 Industries in a Reputational Crisis. <em>Discussant: Giuseppe De Arcangelis</em></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-4 bg-white rounded-lg"><strong>15.30 - 16:00</strong> - Coffee break</div>
+                            <div class="p-4 bg-white rounded-lg">
+                                <p class="font-bold mb-4">16:00 – 17:45 - Parallel Sessions</p>
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                                    <div class="bg-gray-50 p-3 rounded-md">
+                                        <h4 class="font-bold text-base text-[#004c97] mb-2 min-h-[4em]">Session 7: Migration and development</h4>
+                                        <ul class="space-y-2 text-justify">
+                                            <li class="schedule-item" data-day="1"><strong>Elisabeth Kempter</strong> (University of Luxembourg) “From fields to frontiers” - Cash crop price shocks and migration intentions in rural sub-Saharan Africa. <em>Discussant: Vincent Somville</em></li>
+                                            <li class="schedule-item" data-day="1"><strong>Aurélie Gillen</strong> (University of Luxembourg) Bugged Out: Locust Plagues, Migration, and Adaptation in 19th Century US. <em>Discussant: Gianmarco Daniele</em></li>
+                                            <li class="schedule-item" data-day="1"><strong>Rashid Sohail Khan</strong> (Ghent University Belgium) The Impact of Parental Migration on Child Labour in Pakistan: A Household Level Analysis using Labour Force Surveys. <em>Discussant: Christelle Dumas</em></li>
+                                        </ul>
+                                    </div>
+                                    <div class="bg-gray-50 p-3 rounded-md">
+                                        <h4 class="font-bold text-base text-[#004c97] mb-2 min-h-[4em]">Session 8: Trade Policy (2)</h4>
+                                        <ul class="space-y-2 text-justify">
+                                            <li class="schedule-item" data-day="1"><strong>Glenn Rayp</strong> (Ghent University, Belgium) The impact of EUTR on the volume and structure of trade in timber and timber products. <em>Discussant: Amanda De Pirro</em></li>
+                                            <li class="schedule-item" data-day="1"><strong>Andrey Stoyanov</strong> (York University, Canada) Role of Economies of Scale for the Trade Policy and Trade Agreement Formation. <em>Discussant: <strong>Eric Bond</strong> (Vanderbilt University, USA)</em></li>
+                                            <li class="schedule-item" data-day="1"><strong>Antonio Vicencio</strong> (Maastricht University, Netherlands) Artifacts, Identities, and Trade. <em>Discussant: Glenn Rayp</em></li>
+                                        </ul>
+                                    </div>
+                                    <div class="bg-gray-50 p-3 rounded-md">
+                                        <h4 class="font-bold text-base text-[#004c97] mb-2 min-h-[4em]">Session 9: Trade and geography</h4>
+                                        <ul class="space-y-2 text-justify">
+                                            <li class="schedule-item" data-day="1"><strong>Akihiko Yanase</strong> (Nagoya University, Japan) Industrial location in the presence of competition among the big and the small. <em>Discussant: Kent (Min Qiang) Zhao</em></li>
+                                            <li class="schedule-item" data-day="1"><strong>Federico Trionfetti</strong> (Aix-Marseille University, France) Geography and Size of Cities: from Past to Present. <em>Discussant: Akihiko Yanase</em></li>
+                                            <li class="schedule-item" data-day="1"><strong>Dorothee Hillrichs</strong> (IFO Institute/LMU Munich, Germany) Foreign market access' role for export quality. <em>Discussant: Qingyu Chen</em></li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div>
-                            <h3 class="text-xl md:text-2xl font-bold mb-4"><span class="bg-[#004c97] text-white rounded-full px-4 py-1 mr-3">Day 2</span> September 9, 2025</h3>
-                                <div class="space-y-4">
-                                <div class="p-4 bg-gray-100 rounded-lg text-sm md:text-base"><strong>09:30 AM</strong> - Keynote: Axel Dreher</div>
-                                <div class="p-4 bg-gray-100 rounded-lg text-sm md:text-base"><strong>11:00 AM</strong> - Panel: Institutions and Economic Development</div>
-                                <div class="p-4 bg-gray-100 rounded-lg text-sm md:text-base"><strong>01:00 PM</strong> - Lunch Break</div>
-                                <div class="p-4 bg-gray-100 rounded-lg text-sm md:text-base"><strong>02:30 PM</strong> - Parallel Sessions on Behavioral Economics</div>
-                                <div class="p-4 bg-gray-100 rounded-lg text-sm md:text-base"><strong>04:30 PM</strong> - Closing Remarks & Farewell</div>
+                    </div>
+                    
+                    <!-- Day 2 Content -->
+                    <div id="day2-content" class="day-content hidden">
+                         <div class="space-y-4">
+                            <div class="p-4 bg-white rounded-lg">
+                                <p class="font-bold mb-4">9:00 – 11.20 - Parallel Sessions</p>
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                                    <div class="bg-gray-50 p-3 rounded-md">
+                                        <h4 class="font-bold text-base text-[#004c97] mb-2 min-h-[4em]">Session 10: Migration and asylum</h4>
+                                        <ul class="space-y-2 text-justify">
+                                            <li class="schedule-item" data-day="2"><strong>Nur Bilge & Claire Naiditch</strong> (Univ. of Lille, France) The Internal Migration Response to Rising Refugees & Migrants in Turkey. <em>Discussant: Rune J. Hagen</em></li>
+                                            <li class="schedule-item" data-day="2"><strong>Jaan Masso</strong> (University of Tartu, Estonia) Migration Restrictions, Selection & Labor Market Returns: Estonian Emigrants, 1989–2021. <em>Discussant: Giovanni Ferri</em></li>
+                                            <li class="schedule-item" data-day="2"><strong>Rune J. Hagen</strong> (Univ. of Bergen, Norway) <strong>& N. Coniglio</strong> (Univ. Bari, Italy) Returning failed asylum seekers. <em>Discussant: Rezart Hoxhaj (Univ. Parma, Italy)</em></li>
+                                            <li class="schedule-item" data-day="2"><strong>Keisaku Higashida</strong> (Kwansei Gakuin University, Japan) Gaming for Cohesion: A Study on Integrating Refugees Through Virtual Intergroup Contact. <em>Discussant: Claire Naiditch</em></li>
+                                        </ul>
+                                    </div>
+                                    <div class="bg-gray-50 p-3 rounded-md">
+                                        <h4 class="font-bold text-base text-[#004c97] mb-2 min-h-[4em]">Session 11: International Trade</h4>
+                                        <ul class="space-y-2 text-justify">
+                                            <li class="schedule-item" data-day="2"><strong>Hiroshi Kurata</strong> (Tohoku Gakuin University, Japan) International Trade and Environmental Policy under Kantian Behavior. <em>Discussant: Yasuhiro Takarada</em></li>
+                                            <li class="schedule-item" data-day="2"><strong>Alireza Naghavi</strong> (Kyoto University, Japan & Univ. Bologna, Italy) Slice to Protect. <em>Discussant: Yan Ma</em></li>
+                                            <li class="schedule-item" data-day="2"><strong>Yan Ma</strong> (Kobe University, Japan) <strong>and Eric Bond</strong> (Vanderbilt Univ., USA) Super/submodularity, Skill Sensitivity & Global Supply Chains. <em>Discussant: Paolo Bonnet</em></li>
+                                            <li class="schedule-item" data-day="2"><strong>Ernesto Ugolini</strong> (Aix-Marseille Universite, France) General Equilibrium Effects of the China Shock: An Empirical Approach. <em>Discussant: Mushegh Tovmasyan</em></li>
+                                        </ul>
+                                    </div>
+                                    <div class="bg-gray-50 p-3 rounded-md">
+                                        <h4 class="font-bold text-base text-[#004c97] mb-2 min-h-[4em]">Session 12: Experiments & development</h4>
+                                        <ul class="space-y-2 text-justify">
+                                            <li class="schedule-item" data-day="2"><strong>Vincent Somville</strong> (NHH, Norway) Shaping Futures: Empowering students in the transition to the labor market in Tanzania. <em>Discussant: Elisabeth Kempter</em></li>
+                                            <li class="schedule-item" data-day="2"><strong>Arne Nasgowitz</strong> (SNF, Norway) Women empowerment against sexual harassment: Evidence from Tanzania. <em>Discussant: Evie Graus</em></li>
+                                            <li class="schedule-item" data-day="2"><strong>Anna Rinaldi</strong> (University of Bari, Italy) The Vulnerability Game. <em>Discussant: Aurélie Gillen</em></li>
+                                            <li class="schedule-item" data-day="2"><strong>Kjetil Bjorvatn</strong> (NHH, Norway) Promoting women’s leadership: Experimental evidence from savings groups in Uganda. <em>Discussant: Rashid Sohail Khan</em></li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
+                            <div class="p-4 bg-white rounded-lg"><strong>11:20 – 11:50</strong> - Coffee break</div>
+                            <div class="schedule-item p-4 bg-white rounded-lg text-center" data-day="2"><strong>11:50 – 12:50</strong> - <strong>Keynote Session: Prof. Axel Dreher (Heidelberg University, Germany)</strong> <br><em>“The political economy of sub-national aid allocation and effectiveness”</em></div>
+                            <div class="p-4 bg-white rounded-lg"><strong>12:50 – 14:00</strong> - Lunch break </div>
+                            <div class="p-4 bg-white rounded-lg">
+                                <p class="font-bold mb-4">14:00 - 16:20 - Parallel Sessions</p>
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                                    <div class="bg-gray-50 p-3 rounded-md">
+                                        <h4 class="font-bold text-base text-[#004c97] mb-2 min-h-[4em]">Session 13: Globalisation and structural change</h4>
+                                        <ul class="space-y-2 text-justify">
+                                            <li class="schedule-item" data-day="2"><strong>Tim de Leeuw</strong> (University of Groningen, Netherlands) Diversifying in Doing: Determinants of Path-dependent and Path-defying Task Specialization in Trade. <em>Discussant: N. Coniglio</em></li>
+                                            <li class="schedule-item" data-day="2"><strong>N. Coniglio, Davide Vurchio</strong> (Univ. Bari) <strong>& M. Lanzafame</strong> (ADB) ‘Lost specializations’: global interactions and the loss of comparative advantages. <em>Discussant: Karsten Mau</em></li>
+                                            <li class="schedule-item" data-day="2"><strong>Matteo Lanzafame</strong> (Asian Development Bank) Structural Change & Growth Trajectories through Counterfactual Quantile Decomposition. <em>Discussant: Michael Nower</em></li>
+                                            <li class="schedule-item" data-day="2"><strong>Qingyu Chen</strong> (University of Oxford, UK) Digging Up the Value Chain: Mineral Export Restrictions and Industrial Upgrading. <em>Discussant: Davide Vurchio</em></li>
+                                        </ul>
+                                    </div>
+                                    <div class="bg-gray-50 p-3 rounded-md">
+                                        <h4 class="font-bold text-base text-[#004c97] mb-2 min-h-[4em]">Session 14: Multinational firms and global interactions </h4>
+                                        <ul class="space-y-2 text-justify">
+                                            <li class="schedule-item" data-day="2"><strong>Bruno Merlevede</strong> (Ghent University, Belgium) Multinational Network Restructuring, Geopolitical Exposure and Home Country Effects – Evidence for European MNEs. <em>Discussant: Oscar Lemmers</em></li>
+                                            <li class="schedule-item" data-day="2"><strong>Ignacio Marra de Artinano</strong> (Universite Libre de Bruxelles, Belgium) Winners & Losers from MNEs Entry. The Labor Market Effects of Brazil’s FDI Liberalization. <em>Discussant: Bruno Merlevede</em></li>
+                                            <li class="schedule-item" data-day="2"><strong>Oscar Lemmers</strong> (Statistics Netherlands), Drivers of production-based & ownershipbased dependencies of U.S. industries on China and the EU. <em>Discussant: Jaan Masso</em></li>
+                                        </ul>
+                                    </div>
+                                    <div class="bg-gray-50 p-3 rounded-md">
+                                        <h4 class="font-bold text-base text-[#004c97] mb-2 min-h-[4em]">Session 15: Trade empirics</h4>
+                                        <ul class="space-y-2 text-justify">
+                                            <li class="schedule-item" data-day="2"><strong>Kent (Min Qiang) Zhao</strong> (Xiamen University, China) Product Level Emission Intensities: Measurement and Application to the Carbon Border Adjustment Mechanism. <em>Discussant: Alen Mulabdic</em></li>
+                                            <li class="schedule-item" data-day="2"><strong>Maxime Berrou</strong> (CY Cergy Paris Université, France) Labor Market Imperfections and Trade: MicroLevel Evidence from India. <em>Discussant: Antonio Vicencio</em></li>
+                                            <li class="schedule-item" data-day="2"><strong>Alexander Plekhanov</strong> (European Bank for Reconstruction and Development, UK) Decision to Leave: Do private sanctions reinforce official sanctions?. <em>Discussant: Dorothee Hillrichs</em></li>
+                                            <li class="schedule-item" data-day="2"><strong>Gero Dasbach</strong> (University of Lille, France) Trade and Climate Policy Interaction: The Case of an EUIndia Free Trade Agreement and a Carbon Border Adjustment Mechanism. <em>Discussant: Kent Zhao</em></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-4 bg-white rounded-lg"><strong>16.20</strong> - Coffee break and farewell</div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="organizers" class="py-20 bg-gray-100">
+        <!-- Organizers Section -->
+        <section id="organizers" class="py-20 bg-white">
             <div class="container mx-auto px-6">
                 <h2 class="text-4xl font-bold text-center mb-12 text-slate-900">Organizers</h2>
                 <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 justify-center">
-                    <a href="https://www.uniba.it/it/docenti/coniglio-nicola-daniele" target="_blank" rel="noopener noreferrer" class="block bg-white rounded-lg shadow-lg text-center transform hover:-translate-y-2 transition-transform duration-300 group">
-                        <div class="p-6">
-                            <img src="https://www.uniba.it/it/docenti/coniglio-nicola-daniele/NicolaConigliofototessera.jpg/@@images/ed2d330e-859b-43ee-9df9-2b979d0e3c44.jpeg" alt="Nicola Coniglio" class="speaker-img rounded-full mx-auto mb-4 border-4 border-slate-200 group-hover:border-[#004c97] transition-colors duration-300" onerror="this.onerror=null;this.src='https://placehold.co/128x128/e2e8f0/64748b?text=NC';">
+                    <!-- Organizer 1 -->
+                    <div class="bg-white rounded-lg shadow-lg text-center transform hover:-translate-y-2 transition-transform duration-300 group flex flex-col">
+                        <a href="https://www.uniba.it/it/docenti/coniglio-nicola-daniele" target="_blank" rel="noopener noreferrer" class="block p-6 flex-grow">
+                            <img src="https://www.uniba.it/it/docenti/coniglio-nicola-daniele/NicolaConigliofototessera.jpg/@@images/ed2d330e-859b-43ee-9df9-2b979d0e3c44.jpeg" alt="Nicola Coniglio" class="speaker-img rounded-full mx-auto mb-4 border-4 border-slate-200 group-hover:border-[#004c97] transition-colors duration-300">
                             <h3 class="text-xl font-bold mb-1">Nicola Coniglio</h3>
                             <p class="text-gray-500 mb-2">University of Bari</p>
+                        </a>
+                        <div class="px-6 pb-6 mt-auto">
+                             <button class="view-in-program-btn w-full bg-gray-200 text-gray-800 px-4 py-2 rounded-full text-sm font-bold hover:bg-[#004c97] hover:text-white transition-all duration-300" data-speaker-name="Coniglio">View in Schedule</button>
                         </div>
-                    </a>
-                    <a href="https://www.nhh.no/en/employees/faculty/kjetil-bjorvatn/#tab1" target="_blank" rel="noopener noreferrer" class="block bg-white rounded-lg shadow-lg text-center transform hover:-translate-y-2 transition-transform duration-300 group">
-                        <div class="p-6">
-                            <img src="https://www.nhh.no/contentassets/e460566d3b4d4170942c17c6338d7df5/s1717.jpg?width=400&factor=2&quality=90" alt="Kjetil Bjorvatn" class="speaker-img rounded-full mx-auto mb-4 border-4 border-slate-200 group-hover:border-[#004c97] transition-colors duration-300" onerror="this.onerror=null;this.src='https://placehold.co/128x128/e2e8f0/64748b?text=KB';">
+                    </div>
+                    <!-- Organizer 2 -->
+                    <div class="bg-white rounded-lg shadow-lg text-center transform hover:-translate-y-2 transition-transform duration-300 group flex flex-col">
+                        <a href="https://www.nhh.no/en/employees/faculty/kjetil-bjorvatn/#tab1" target="_blank" rel="noopener noreferrer" class="block p-6 flex-grow">
+                            <img src="https://www.nhh.no/contentassets/e460566d3b4d4170942c17c6338d7df5/s1717.jpg?width=400&factor=2&quality=90" alt="Kjetil Bjorvatn" class="speaker-img rounded-full mx-auto mb-4 border-4 border-slate-200 group-hover:border-[#004c97] transition-colors duration-300">
                             <h3 class="text-xl font-bold mb-1">Kjetil Bjorvatn</h3>
                             <p class="text-gray-500 mb-2">NHH Norwegian School of Economics</p>
+                        </a>
+                        <div class="px-6 pb-6 mt-auto">
+                             <button class="view-in-program-btn w-full bg-gray-200 text-gray-800 px-4 py-2 rounded-full text-sm font-bold hover:bg-[#004c97] hover:text-white transition-all duration-300" data-speaker-name="Kjetil Bjorvatn">View in Schedule</button>
                         </div>
-                    </a>
-                    <a href="https://www4.uib.no/en/find-employees/Rune.Jansen.Hagen" target="_blank" rel="noopener noreferrer" class="block bg-white rounded-lg shadow-lg text-center transform hover:-translate-y-2 transition-transform duration-300 group">
-                        <div class="p-6">
-                            <img src="https://profile.uib.no/sites/default/files/styles/profile_image/public/w2/ru/rune-jansen-hagen-web.jpg?h=2691ebc6&itok=ybCqxMIA" alt="Rune Jansen Hagen" class="speaker-img rounded-full mx-auto mb-4 border-4 border-slate-200 group-hover:border-[#004c97] transition-colors duration-300" onerror="this.onerror=null;this.src='https://placehold.co/128x128/e2e8f0/64748b?text=RJH';">
+                    </div>
+                    <!-- Organizer 3 -->
+                    <div class="bg-white rounded-lg shadow-lg text-center transform hover:-translate-y-2 transition-transform duration-300 group flex flex-col">
+                        <a href="https://www4.uib.no/en/find-employees/Rune.Jansen.Hagen" target="_blank" rel="noopener noreferrer" class="block p-6 flex-grow">
+                            <img src="https://profile.uib.no/sites/default/files/styles/profile_image/public/w2/ru/rune-jansen-hagen-web.jpg?h=2691ebc6&itok=ybCqxMIA" alt="Rune Jansen Hagen" class="speaker-img rounded-full mx-auto mb-4 border-4 border-slate-200 group-hover:border-[#004c97] transition-colors duration-300">
                             <h3 class="text-xl font-bold mb-1">Rune Jansen Hagen</h3>
                             <p class="text-gray-500 mb-2">University of Bergen</p>
+                        </a>
+                        <div class="px-6 pb-6 mt-auto">
+                             <button class="view-in-program-btn w-full bg-gray-200 text-gray-800 px-4 py-2 rounded-full text-sm font-bold hover:bg-[#004c97] hover:text-white transition-all duration-300" data-speaker-name="Rune J. Hagen">View in Schedule</button>
                         </div>
-                    </a>
+                    </div>
                 </div>
             </div>
         </section>
 
+        <!-- Speakers Section -->
+        <section id="speakers" class="py-20 bg-gray-100">
+            <div class="container mx-auto px-6">
+                <div class="mb-16">
+                    <h2 class="text-4xl font-bold text-center mb-12 text-slate-900">Keynote Speakers</h2>
+                    <div class="max-w-2xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-10 justify-center">
+                        <!-- Speaker 1 -->
+                        <div class="bg-white rounded-lg shadow-lg text-center transform hover:-translate-y-2 transition-transform duration-300 group flex flex-col">
+                            <a href="https://sites.google.com/view/paola-conconi-website/" target="_blank" rel="noopener noreferrer" class="block p-6 flex-grow">
+                                <img src="https://www.economics.ox.ac.uk/sites/default/files/styles/person_profile_photo/public/economics/images/person/paola_conconi.jpg?itok=lMdxnv0r" alt="Paola Conconi" class="speaker-img rounded-full mx-auto mb-4 border-4 border-slate-200 group-hover:border-[#004c97] transition-colors duration-300">
+                                <h3 class="text-xl font-bold mb-1">Paola Conconi</h3>
+                                <p class="text-gray-500 mb-2">University of Oxford</p>
+                                <p class="text-sm text-gray-600 text-justify">Professor of Economics (Statutory Chair) at the University of Oxford. Professorial Fellow at New College Oxford. Member of the European Center for Advanced Research in Economics and Statistics (ECARES).</p>
+                            </a>
+                            <div class="px-6 pb-6 mt-auto">
+                                <button class="view-in-program-btn w-full bg-gray-200 text-gray-800 px-4 py-2 rounded-full text-sm font-bold hover:bg-[#004c97] hover:text-white transition-all duration-300" data-speaker-name="Paola Conconi">View in Schedule</button>
+                            </div>
+                        </div>
+                        <!-- Speaker 2 -->
+                        <div class="bg-white rounded-lg shadow-lg text-center transform hover:-translate-y-2 transition-transform duration-300 group flex flex-col">
+                            <a href="https://axel-dreher.de/" target="_blank" rel="noopener noreferrer" class="block p-6 flex-grow">
+                                <img src="https://axel-dreher.de/wp-content/uploads/2023/06/Axel-Dreher-1-1024x915.jpg" alt="Axel Dreher" class="speaker-img rounded-full mx-auto mb-4 border-4 border-slate-200 group-hover:border-[#004c97] transition-colors duration-300">
+                                <h3 class="text-xl font-bold mb-1">Axel Dreher</h3>
+                                <p class="text-gray-500 mb-2">Heidelberg University</p>
+                                <p class="text-sm text-gray-600 text-justify">Professor of International and Development Politics at Heidelberg University’s Alfred-Weber-Institute for Economics. Editor of the Review of International Organizations. Co-Director of CefES, member of the German National Academy of Sciences Leopoldina.</p>
+                            </a>
+                            <div class="px-6 pb-6 mt-auto">
+                                <button class="view-in-program-btn w-full bg-gray-200 text-gray-800 px-4 py-2 rounded-full text-sm font-bold hover:bg-[#004c97] hover:text-white transition-all duration-300" data-speaker-name="Axel Dreher">View in Schedule</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h2 class="text-4xl font-bold text-center mb-12 text-slate-900">Speakers</h2>
+                    <div id="speaker-list" class="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8 justify-center">
+                        <!-- Dynamically generated speakers -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Location Section -->
         <section id="venue" class="py-20">
             <div class="container mx-auto px-6">
                 <div class="flex flex-col md:flex-row items-center gap-10">
@@ -234,18 +457,26 @@
         
     </main>
 
-    <footer class="bg-gray-900 text-white py-10">
-        <div class="container mx-auto px-6 text-center">
-            <p>© 2025 EGI Conference. All Rights Reserved.</p>
-            <p class="text-sm text-gray-400 mt-2">Hosted by the University of Bari Aldo Moro</p>
+    <!-- Sponsors Section -->
+    <footer class="bg-white py-10">
+        <div class="container mx-auto px-6">
+            <h2 class="text-center text-2xl font-bold text-slate-600 mb-8">Sponsors</h2>
+            <div class="flex flex-wrap items-center justify-center sm:justify-around gap-x-8 sm:gap-x-12 gap-y-6">
+                <a href="https://grins.it/" target="_blank" rel="noopener noreferrer" class="block"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbP3HSTE2P-ZOfkbGLzJ7ZmLejWvqsdjDXAQ&s" alt="GRINS Project" class="h-12 sm:h-16 w-auto transition-transform hover:scale-105"></a>
+                <a href="https://next-generation-eu.europa.eu/index_it" target="_blank" rel="noopener noreferrer" class="block"><img src="https://ec.europa.eu/regional_policy/images/information-sources/logo-download-center/nextgeneu_en.jpg" alt="NextGenerationEU" class="h-12 sm:h-16 w-auto transition-transform hover:scale-105"></a>
+                <a href="https://www.mur.gov.it/it" target="_blank" rel="noopener noreferrer" class="block"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/MUR-logo.svg/750px-MUR-logo.svg.png" alt="MUR" class="h-10 sm:h-12 w-auto transition-transform hover:scale-105"></a>
+                <a href="https://www.italiadomani.gov.it/content/sogei-ng/it/it/home.html" target="_blank" rel="noopener noreferrer" class="block"><img src="https://www.einssardinia.eu/logo_italia-domani.png" alt="Italia Domani" class="h-12 sm:h-16 w-auto transition-transform hover:scale-105"></a>
+                <a href="https://www.master-egei.eu/" target="_blank" rel="noopener noreferrer" class="block"><img src="https://www.master-egei.eu/wp-content/uploads/2020/11/cropped-EGEI-Logo-Micro2-1.jpg" alt="EGEI" class="h-12 sm:h-16 w-auto transition-transform hover:scale-105"></a> 
+            </div>
         </div>
     </footer>
 
+    <!-- Registration Modal -->
     <div id="registerModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
         <div class="bg-white rounded-lg shadow-2xl p-8 max-w-lg w-full">
             <div class="flex justify-between items-center mb-6">
                 <h3 class="text-2xl font-bold text-slate-800">Registration Form</h3>
-                <button data-modal-close class="text-gray-400 hover:text-gray-600 text-3xl leading-none">×</button>
+                <button data-modal-close class="text-gray-400 hover:text-gray-600 text-3xl leading-none">&times;</button>
             </div>
             <div id="form-container" class="text-left">
                 <div class="mb-4">
@@ -273,6 +504,61 @@
     </div>
 
     <script>
+        // Speaker Data
+        const speakerData = {
+            "Vitorocco Peragine": { img: "https://www.uniba.it/it/docenti/peragine-vitorocco/foto-sito-1.jpg/@@images/ff1a0e76-fd1c-48af-9913-0de4a540fcd8.jpeg", link: "https://www.uniba.it/it/docenti/peragine-vitorocco", institution: "University of Bari Aldo Moro" },
+            "Alen Mulabdic": { img: "https://s7d1.scene7.com/is/image/wbcollab/picture-12621-1507921925:134x134?qlt=90&fmt=webp&resMode=sharp2", link: "https://blogs.worldbank.org/en/team/a/alen-mulabdic", institution: "World Bank, USA" },
+            "Alireza Naghavi": { img: "https://www.unibo.it/uniboweb/utils/UserImage.aspx?IdAnagrafica=575100&IdFoto=ce79035e", link: "https://www.unibo.it/sitoweb/alireza.naghavi", institution: "Kyoto University, Japan & Univ. Bologna, Italy" },
+            "Giuseppe De Arcangelis": { img: "https://research.uniroma1.it/sites/default/files/styles/medium/public/picture-27572-1599664174.jpg?itok=pcnYQSxf", link: "https://sites.google.com/uniroma1.it/giuseppe-dearcangelis/", institution: "Sapienza University of Rome, Italy" },
+            "Alexander Plekhanov": { img: "https://www.ispionline.it/wp-content/uploads/2022/10/1395242401443.jpg", link: "https://www.ebrd.com/home/what-we-do/office-of-the-chief-economist/alexander-plekhanov.html#", institution: "European Bank for Reconstruction and Development, UK" },
+            "Mushegh Tovmasyan": { img: "https://www.ritm.universite-paris-saclay.fr/wp-content/uploads/ultimatemember/10004/profile_photo-190x190.png?1756139039", link: "https://sites.google.com/view/musheghtovmasyan/bio", institution: "University Paris-Saclay, France" },
+            "Andrey Stoyanov": { img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtOCP_-KQEE1uC9CWMe2pdWfptsJbADCJUuA&s", link: "https://sites.google.com/view/andreystoyanov/home", institution: "York University, Canada" },
+            "Christelle Dumas": { img: "https://admin.unifr.ch/indigo/photo/144092/a386f6c10cee6488c4ed136d049382d1968b0653", link: "https://www.unifr.ch/ses/en/fac/academic-personnel/prof/people/18119/1ad27", institution: "University of Fribourg, Switzerland" },
+            "Keisaku Higashida": { img: "https://global.econ.kwansei.ac.jp/wp57/wp-content/uploads/2017/01/HIGASHIDA-Keisaku.jpg", link: "https://global.econ.kwansei.ac.jp/people/higashida-keisaku", institution: "Kwansei Gakuin University, Japan" },
+            "Evie Graus": { img: "https://www.uni.lu/en/person-image/NTAwNzI0NDNfX0V2aWUgQ29ybmVsaWEgQ2F0aGFyaW5hIE1hcmlhIEdSQVVT--large", link: "https://www.uni.lu/fdef-en/people/evie-cornelia-catharina-maria-graus/", institution: "University of Luxembourg" },
+            "Arne Nasgowitz": { img: "https://snf.no/media/x4pb5ful/582a6171.jpg?rxy=0.4724365663648832,0.3517479773954911&width=630&height=680&rnd=133864357636230000", link: "https://snf.no/en/personnel/arne-nasgowitz/", institution: "SNF, Norway" },
+            "Karsten Mau": { img: "https://www.maastrichtuniversity.nl/sites/default/files/styles/960x1440/public/ppp/70058428/um-sbe-karsten-mau-mile-004-jpg-crop.jpg?itok=YXKTHGPI", link: "https://www.maastrichtuniversity.nl/k-mau", institution: "Maastricht University, Netherlands" },
+            "Megan Haasbroek": { img: "https://lh3.googleusercontent.com/a7IuKAnZMyxTmrB2RuPObCDWe3iDLZCyvg1kdZrKE6fNWArmPZ8zWncodTV0Br8RUX6GGJtPpuSB-UT_5xbnyVKl4UyD6L7N-TDUpqIDskcjBRJt9CRMabpN3k7j7sclMvIlg8EB6r5z_qnQ0-ImuH1z9-uZdCN1_UbF=w1280", link: "https://www.meganhaasbroek.com/", institution: "BI Norwegian Business School" },
+            "Jan Fidrmuc": { img: "https://pro.univ-lille.fr/fileadmin/_processed_/8/a/csm_jan_fidrmuc_13add386fd.jpg", link: "https://pro.univ-lille.fr/jan-fidrmuc", institution: "Université de Lille, France" },
+            "Michel Beine": { img: "https://www.uni.lu/en/person-image/NTAwMDA2OTZfX01pY2hlbCBCRUlORQ==--large", link: "https://www.uni.lu/fdef-en/people/michel-beine/", institution: "University of Luxembourg" },
+            "Gianmarco Daniele": { img: "https://www.gianmarcodaniele.com/uploads/3/1/8/0/31808817/20240420-1655592_orig.jpg", link: "https://www.gianmarcodaniele.com/", institution: "University of Milan & Bocconi University, Italy" },
+            "Silvia Marchesi": { img: "https://www.unimib.it/sites/default/files/foto/18-11-2017/marchesi_bw_media.png", link: "https://www.unimib.it/silvia-marchesi", institution: "University of Milano Bicocca, Italy" },
+            "Matteo Lanzafame": { img: "https://blogs.adb.org/sites/blogs/files/pictures/MLanzafame.jpg", link: "https://sites.google.com/site/matteolanzafamesite/Home", institution: "Asian Development Bank" },
+            "Roberto Basile": { img: "https://research.uniroma1.it/sites/default/files/styles/medium/public/img_5805.jpg?itok=iOgJP82C", link: "https://research.uniroma1.it/researcher/0cbdba67555898e909014ead21e4a774e5c7ce7aa9e63c994fe8c4fc?page=1", institution: "University of Rome Sapienza, Italy" },
+            "Antonello Clemente": { img: "https://scholar.googleusercontent.com/citations?view_op=view_photo&user=KXxzOVcAAAAJ&citpid=1", link: "https://it.linkedin.com/in/antonelloclemente", institution: "University of Bari, Italy" },
+            "Amanda De Pirro": { img: "https://media.licdn.com/dms/image/v2/D4D03AQFZPO3OPUmN4Q/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1712312474209?e=2147483647&v=beta&t=1aDIsb3pHy0cuD6atA2Zs2pBjVTFqsN0I_rT9n-VvNE", link: "https://sites.google.com/view/amandadepirro", institution: "Università della Svizzera Italiana, Switzerland" },
+            "Ignacio Marra de Artinano": { img: "https://ignaciomarra.com/wp-content/uploads/2025/08/Web_Photo_Main.png", link: "https://ignaciomarra.com/", institution: "Universite Libre de Bruxelles, Belgium" },
+            "Michael Nower": { img: "https://apps.dur.ac.uk/biography/image/1878", link: "https://www.durham.ac.uk/business/our-people/michael-nower/", institution: "Durham University, UK" },
+            "Yasuhiro Takarada": { img: "https://i1.rgstatic.net/ii/profile.image/278435197931521-1443395532108_Q128/Yasuhiro-Takarada.jpg", link: "https://porta.nanzan-u.ac.jp/research/html/100751_en.html", institution: "Nanzan University, Japan" },
+            "Federico Trionfetti": { img: "https://www.amse-aixmarseille.fr/sites/default/files/styles/profile_466_466/public/profile/photos/Trionfetti_2.jpg?itok=F4T9VkX8", link: "https://www.amse-aixmarseille.fr/en/members/trionfetti", institution: "Aix-Marseille University, France" },
+            "Paolo Bonnet": { img: "https://joint-research-centre.ec.europa.eu/sites/default/files/styles/oe_theme_medium_no_crop/public/2024-07/foto_bonnet.JPG?itok=b6qT1UeO", link: "https://joint-research-centre.ec.europa.eu/paolo-bonnet_en", institution: "EU Joint Research Centre, Italy" },
+            "Maxime Berrou": { img: "https://media.licdn.com/dms/image/v2/D4E03AQEbaSR6UOxWdw/profile-displayphoto-scale_200_200/B4EZebgrwQG4Ac-/0/1750660728336?e=2147483647&v=beta&t=vSD8MKyal5zvquC-sBZex8vlkeXz36x29uV5eLwIfow", link: "https://fr.linkedin.com/in/maxime-berrou-763b18195", institution: "CY Cergy Paris Université, France" },
+            "Giovanni Ferri": { img: "https://backoffice.lumsa.it/sites/default/files/images/1531/2023-04/ferri-giovanni_L-18.png", link: "https://lumsa.it/it/docenti/giovanni-ferri", institution: "LUMSA, Italy" },
+            "Tim de Leeuw": { img: "https://media.licdn.com/dms/image/v2/D4E03AQE4kKDJ1bwt6A/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1701457407332?e=2147483647&v=beta&t=FGtGXSSLDsdTKvhsVQ-DtlxOaypMM0xAqjW_sx0XGNs", link: "https://www.rug.nl/staff/t.de.leeuw/?lang=en", institution: "University of Groningen, Netherlands" },
+            "Elisabeth Kempter": { img: null, link: "https://www.uni.lu/fdef-en/people/elisabeth-kempter/", institution: "University of Luxembourg" },
+            "Vincent Somville": { img: "https://www.nhh.no/contentassets/1559b92d16c14b55841475814888f083/s12352.jpg?width=400&factor=2&quality=90", link: "https://www.nhh.no/en/employees/faculty/vincent-somville/", institution: "NHH, Norway" },
+            "Aurélie Gillen": { img: "https://www.uni.lu/en/person-image/NTAwNjc0MzdfX0F1cmVsaWUgRGF2aW5hIEdJTExFTg==--2048x2048", link: "https://www.uni.lu/fdef-en/people/aurelie-davina-gillen/", institution: "University of Luxembourg" },
+            "Rashid Sohail Khan": { img: "https://cris.unu.edu/sites/cris.unu.edu/files/styles/people-overview/public/Rashid%20Sohail%20Khan.jpg?itok=DYdD4YyW", link: "https://research.ugent.be/web/person/rashid-sohail-khan-0/en", institution: "Ghent University Belgium" },
+            "Glenn Rayp": { img: "https://cris.unu.edu/sites/cris.unu.edu/files/styles/people-overview/public/GR.jpg?itok=cG9sK2i2", link: "https://research.ugent.be/web/person/glenn-rayp-0/en", institution: "Ghent University, Belgium" },
+            "Eric Bond": { img: "https://as.vanderbilt.edu/photos/economics/people/image.php/eric-bond.jpg?width=175&image=https://as.vanderbilt.edu/photos/economics/people/eric-bond.jpg", link: "https://as.vanderbilt.edu/economics/bio/eric-bond/", institution: "Vanderbilt University, USA" },
+            "Antonio Vicencio": { img: null, link: "https://www.linkedin.com/in/avicenciob", institution: "Maastricht University, Netherlands" },
+            "Akihiko Yanase": { img: null, link: "https://sites.google.com/site/akihikoyanase/home", institution: "Nagoya University, Japan" },
+            "Kent (Min Qiang) Zhao": { img: "https://faculty.xmu.edu.cn/_resources/group1/M00/00/08/rBtL9GbOin6Abg9XAAMIJvMAz8M899.png", link: "https://faculty.xmu.edu.cn/KentZhao/en/zdylm/1025355/list/index.htm", institution: "Xiamen University, China" },
+            "Dorothee Hillrichs": { img: "https://www.ifo.de/sites/default/files/styles/ob_news_medium/public/2023-10/cvfoto-hillrichs.jpg.webp?h=e0a530dd&itok=AphMwhCv", link: "https://www.ifo.de/en/hillrichs-d", institution: "IFO Institute/LMU Munich, Germany" },
+            "Qingyu Chen": { img: "https://www.economics.ox.ac.uk/sites/default/files/styles/person_profile_photo/public/economics/images/media/qingyu_chen.jpg?itok=A-n_D1t9", link: "https://www.economics.ox.ac.uk/people/qingyu-chen", institution: "University of Oxford, UK" },
+            "Nur Bilge": { img: "https://iflame.ieseg.fr/wp-content/uploads/sites/29/2022/06/photo_BILGE_Nur-e1654361052138.png", link: "https://sites.google.com/view/nurbilge/home", institution: "Univ. of Lille, France" },
+            "Claire Naiditch": { img: "https://pro.univ-lille.fr/fileadmin/_processed_/5/8/csm_claire_naiditch_81aa3be477.jpg", link: "https://pro.univ-lille.fr/claire-naiditch", institution: "Univ. of Lille, France" },
+            "Jaan Masso": { img: "https://ut.ee/sites/default/files/styles/contact_photo/public/2022-09/Jaan%20Masso.jpg?h=ac61d22f&itok=ALS7C3eT", link: "https://ut.ee/en/employee/jaan-masso", institution: "University of Tartu, Estonia" },
+            "Hiroshi Kurata": { img: "https://i1.rgstatic.net/ii/profile.image/282462686072849-1444355760950_Q128/Hiroshi-Kurata-4.jpg", link: "https://www.researchgate.net/profile/Hiroshi-Kurata-4", institution: "Tohoku Gakuin University, Japan" },
+            "Yan Ma": { img: "https://b.kobe-u.ac.jp/faculty_files/images/ma.jpg", link: "https://b.kobe-u.ac.jp/en/faculty/ma/", institution: "Kobe University, Japan" },
+            "Ernesto Ugolini": { img: "https://www.amse-aixmarseille.fr/sites/default/files/styles/profile_466_466/public/profile/photos/image3.jpg?itok=muISEdvU", link: "https://www.amse-aixmarseille.fr/fr/membres/ugolini", institution: "Aix-Marseille Universite, France" },
+            "Anna Rinaldi": { img: "https://media.licdn.com/dms/image/v2/D4D03AQEqqYyvB5AgYQ/profile-displayphoto-shrink_200_200/B4DZOL8ToUHQAY-/0/1733219662928?e=2147483647&v=beta&t=utFiwipAbpqgOKQGYq1EGORQvJN_u4K_69yOwie6QX0", link: "https://www.uniba.it/it/docenti/rinaldi-anna", institution: "University of Bari, Italy" },
+            "Davide Vurchio": { img: "https://cepr.org/sites/default/files/styles/logo/public/profile-photos/200031-dv_photo_a19f3f22d59ec88fe360e111bc2bd302.jpeg?itok=ZTph4Xv3", link: "https://www.uniba.it/it/docenti/vurchio-davide", institution: "Univ. Bari" },
+            "Bruno Merlevede": { img: "https://cepr.org/sites/default/files/styles/logo/public/profile-photos/49065-merlevede_d7d9b5d712802f3cd211e7df19478536.png?itok=wtcwSs7O", link: "https://research.ugent.be/web/person/bruno-merlevede-0/en", institution: "Ghent University, Belgium" },
+            "Oscar Lemmers": { img: "https://media.licdn.com/dms/image/v2/C5103AQHtr0lZfKUDcA/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1517078767227?e=2147483647&v=beta&t=qcNaCPqnchBM2MfDIQh1hEfq9EB3jp6J-7tETUCBN8Y", link: "https://nl.linkedin.com/in/oscar-lemmers/en", institution: "Statistics Netherlands" },
+            "Gero Dasbach": { img: null, link: "https://pro.univ-lille.fr/gero-dasbach", institution: "University of Lille, France" }
+        };
+
         // Modal logic
         const modal = document.getElementById('registerModal');
         const openModalButtons = document.querySelectorAll('[data-modal-open]');
@@ -332,26 +618,127 @@
             mobileMenu.classList.toggle('hidden');
         });
 
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                if (!mobileMenu.classList.contains('hidden')) {
-                    mobileMenu.classList.add('hidden');
-                }
+        // Smooth scrolling and schedule highlighting
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
 
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                const headerOffset = document.getElementById('header').offsetHeight;
-                const elementPosition = targetElement.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    const headerOffset = document.getElementById('header').offsetHeight;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: "smooth"
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth"
+                    });
                 });
+            });
+            
+            const speakerContainer = document.getElementById('speaker-list');
+            const existingSpeakers = ["Paola Conconi", "Axel Dreher", "Nicola Coniglio", "Kjetil Bjorvatn", "Rune Jansen Hagen"];
+            
+            const speakersToRender = Object.keys(speakerData).filter(name => !existingSpeakers.includes(name));
+            
+            speakersToRender.sort((a, b) => a.split(' ').pop().localeCompare(b.split(' ').pop()));
+
+            speakersToRender.forEach(name => {
+                const data = speakerData[name];
+                const initial = name.split(' ').map(n => n[0]).join('');
+                const imgSrc = data.img ? data.img : `https://placehold.co/128x128/E2E8F0/4A5568?text=${initial}`;
+                
+                const speakerHtml = `
+                    <div class="bg-white rounded-lg shadow-lg text-center transform hover:-translate-y-2 transition-transform duration-300 group flex flex-col">
+                        <a href="${data.link}" target="_blank" rel="noopener noreferrer" class="block p-6 flex-grow">
+                            <img src="${imgSrc}" alt="${name}" class="speaker-img rounded-full mx-auto mb-4 border-4 border-slate-200 group-hover:border-[#004c97] transition-colors duration-300" onerror="this.onerror=null;this.src='https://placehold.co/128x128/e2e8f0/64748b?text=${initial}';">
+                            <h3 class="font-bold">${name}</h3>
+                            <p class="text-gray-500 text-sm">${data.institution || ''}</p>
+                        </a>
+                        <div class="px-6 pb-6 mt-auto">
+                             <button class="view-in-program-btn w-full bg-gray-200 text-gray-800 px-4 py-2 rounded-full text-sm font-bold hover:bg-[#004c97] hover:text-white transition-all duration-300" data-speaker-name="${name.split(' ')[0]}">View in Schedule</button>
+                        </div>
+                    </div>
+                `;
+                speakerContainer.innerHTML += speakerHtml;
+            });
+
+            const viewInProgramButtons = document.querySelectorAll('.view-in-program-btn');
+            let highlightTimeout;
+
+            viewInProgramButtons.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    event.stopPropagation();
+                    const speakerName = button.dataset.speakerName;
+                    const scheduleItems = document.querySelectorAll('.schedule-item');
+                    let firstItemFound = null;
+                    
+                    clearTimeout(highlightTimeout);
+                    // Remove previous highlights
+                    scheduleItems.forEach(item => item.classList.remove('highlight'));
+
+                    scheduleItems.forEach(item => {
+                        if (item.textContent.includes(speakerName)) {
+                            if (!firstItemFound) {
+                                firstItemFound = item;
+                            }
+                            item.classList.add('highlight');
+                        }
+                    });
+
+                    highlightTimeout = setTimeout(() => {
+                        scheduleItems.forEach(item => item.classList.remove('highlight'));
+                    }, 20000);
+
+                    if (firstItemFound) {
+                        const day = firstItemFound.dataset.day;
+                        if (day === '1') {
+                            day1Tab.click();
+                        } else {
+                            day2Tab.click();
+                        }
+
+                        setTimeout(() => {
+                            const headerOffset = document.getElementById('header').offsetHeight;
+                            const elementPosition = firstItemFound.getBoundingClientRect().top;
+                            const offsetPosition = elementPosition + window.pageYOffset - headerOffset - 100; // Extra offset for sticky header
+
+                            window.scrollTo({
+                                top: offsetPosition,
+                                behavior: 'smooth'
+                            });
+                        }, 500);
+
+                    } else {
+                        alert('No session found for this speaker.');
+                    }
+                });
+            });
+
+            // Tab functionality for schedule
+            const day1Tab = document.getElementById('day1-tab');
+            const day2Tab = document.getElementById('day2-tab');
+            const day1Content = document.getElementById('day1-content');
+            const day2Content = document.getElementById('day2-content');
+
+            day1Tab.addEventListener('click', () => {
+                day1Tab.classList.add('active');
+                day2Tab.classList.remove('active');
+                day1Content.classList.remove('hidden');
+                day2Content.classList.add('hidden');
+            });
+
+            day2Tab.addEventListener('click', () => {
+                day2Tab.classList.add('active');
+                day1Tab.classList.remove('active');
+                day2Content.classList.remove('hidden');
+                day1Content.classList.add('hidden');
             });
         });
     </script>
